@@ -37,7 +37,7 @@ const AboutServiceSection = () => {
         {/* --- RIGHT SEMI-CIRCLE IMAGE --- */}
         {/* Adjusted top position and height to reduce trailing white space */}
         <div 
-          className="absolute -top-10 -right-10 w-[35%] h-[850px] rounded-l-full overflow-hidden z-0"
+          className="absolute -top-10 -right-10 w-[35%] h-[850px] rounded-l-full overflow-hidden z-0 mt-15"
           style={{
             backgroundImage: "url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=1200')",
             backgroundSize: 'cover',
@@ -59,7 +59,7 @@ const AboutServiceSection = () => {
         {/* --- LEFT SEMI-CIRCLE --- */}
         <div className="absolute -left-16 top-[420px] w-48 h-80 rounded-r-full overflow-hidden border-r-4 border-white/20 z-10 shadow-lg">
            <img 
-            src="https://images.unsplash.com/photo-1611288875055-3b73360aa141?q=80&w=600" 
+            src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?q=80&w=600" 
             className="w-full h-full object-cover" 
             alt="Waste collection" 
           />
