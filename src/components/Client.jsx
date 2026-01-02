@@ -2,7 +2,7 @@ import React from "react";
 import { motion, useMotionValue, useTransform, animate } from "framer-motion";
 
 // Logos
-import logo1 from "../../public/images/logo1.png";
+import logo1 from "../assets/images/logo1.png";
 import logo2 from "../assets/images/logo2.png";
 import logo3 from "../assets/images/logo3.png";
 import logo4 from "../assets/images/logo4.png";
