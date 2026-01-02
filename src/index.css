@@ -1,7 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap");
 @import "tailwindcss";
+/* ================================
+   BASE STYLES
+================================ */
+@layer base {
+  html {
+    font-family: "Inter", sans-serif;
+    background-color: #F4F3EF;
+    color: #061512;
+  }
 
-body {
-  font-family: "Inter", sans-serif;
-  background-color: #f7f6f2;
-  color: #132441;
+  h1 {
+    font-size: 58px;
+    font-weight: 700;
+  }
+
+  h2 {
+    font-size: 32px;
+    font-weight: 700;
+  }
+
+  h3 {
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  h4 {
+    font-size: 20px;
+    font-weight: 400;
+  }
 }
+
+/* ================================
+   TYPOGRAPHY UTILITIES
+================================ */
+@layer utilities {
+  .h2-medium {
+    font-size: 32px;
+    font-weight: 500;
+  }
+
+  .body-1 {
+    font-size: 24px;
+    font-weight: 400;
+  }
+
+  .body-2 {
+    font-size: 20px;
+    font-weight: 400;
+  }
+
+  .label-1 {
+    font-size: 32px;
+    font-weight: 400;
+  }
+
+  .label-2 {
+    font-size: 28px;
+    font-weight: 400;
+  }
+
+  .nav-text {
+    font-size: 24px;
+    font-weight: 500;
+  }
+}
+
+/* ================================
+   COLOR UTILITIES
+================================ */
+@layer utilities {
+  .bg-primary {
+    background-color: #F4F3EF;
+  }
+
+  .bg-body {
+    background-color: #061512;
+  }
+
+  .bg-secondary {
+    background-color: #132442;
+  }
+
+  .bg-accent {
+    background-color: #88BBD8;
+  }
+
+  .bg-secondary-2 {
+    background-color: #EBE8D7;
+  }
+
+  .text-body {
+    color: #061512;
+  }
+
+  .text-secondary {
+    color: #132442;
+  }
+
+  .text-accent {
+    color: #88BBD8;
+  }
+
+  .nav-dark {
+    color: #9CC6DE;
+  }
+
+  .nav-light {
+    color: #2D3E48;
+  }
+}
+

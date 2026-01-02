@@ -1,5 +1,8 @@
-import React from 'react';
-import { ArrowRight } from 'lucide-react';
+import React from "react";
+import { ArrowRight } from "lucide-react";
+import image from "../assets/images/image1.png";
+import image2 from "../assets/images/image2.png";
+import image3 from "../assets/images/image3.png";
 
 const AboutServiceSection = () => {
   const services = [
@@ -14,78 +17,103 @@ const AboutServiceSection = () => {
   return (
     <div className="bg-[#f3f3f1] min-h-screen w-full relative overflow-x-hidden font-sans">
       
-      {/* --- SECTION 1: ABOUT US --- */}
-      <section className="relative pt-24 px-10 md:px-32 flex flex-col md:flex-row items-start min-h-[850px] pb-0">
+      {/* ================= ABOUT US ================= */}
+      <section className="relative pt-20 px-6 sm:px-10 md:px-20 lg:px-32 flex flex-col md:flex-row items-start min-h-[850px]">
         
-        {/* Left Text Content */}
-        <div className="w-full md:w-1/2 z-20 mt-10">
-          <p className="text-gray-700 font-bold text-xs tracking-[0.2em] mb-4">ABOUT US</p>
-          <h1 className="text-[52px] font-bold text-[#1A0185] leading-[1.1] mb-8">
+        {/* LEFT CONTENT */}
+        <div className="w-full md:w-1/2 z-20 mt-10 md:mt-0">
+          <h4 className="text-[#060C0C] font-semibold text-xs sm:text-sm tracking-[0.15em] mb-2">
+            ABOUT US
+          </h4>
+
+          <h1 className="font-bold text-[#1A0185] text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-snug sm:leading-tight mb-6 sm:mb-8">
             Pioneering a <br /> Greener Tomorrow
           </h1>
-          <p className="text-gray-600 text-[15px] leading-relaxed mb-8 max-w-[480px]">
-            With a resolute commitment to transforming waste into wealth, we're not just recycling; 
-            we're rejuvenating industries, supporting local economies, and catalyzing India's 
-            growth trajectory. Through our strategic partnerships and innovative.
+
+          <p className="text-[#060C0C] text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed mb-6 sm:mb-8 max-w-full md:max-w-[480px]">
+            With a resolute commitment to transforming waste into wealth, we're
+            not just recycling; we're rejuvenating industries, supporting local
+            economies, and catalyzing India's growth trajectory.
           </p>
-          <button className="bg-[#99d1e9] hover:bg-[#7bbcd5] font-bold py-3 px-8 rounded-full flex items-center gap-3 transition-all">
-            KNOW MORE <ArrowRight size={18} strokeWidth={3} />
+
+          <button className="mt-4 sm:mt-6 bg-[#87BBD7] text-black px-6 sm:px-7 py-2 sm:py-3 rounded-full text-sm sm:text-base font-medium flex items-center gap-2 hover:bg-[#76a8c1] transition">
+            KNOW MORE →
           </button>
         </div>
 
-        {/* --- RIGHT SEMI-CIRCLE IMAGE --- */}
-        {/* Width set to 25%, Height to 1000px as requested */}
-        <div 
-          className="absolute top-0 -right-5 w-[25%] h-[1000px] rounded-l-[100%_50%] overflow-hidden z-0 mt--5"
+        {/* RIGHT BIG SEMI-CIRCLE */}
+        <div
+          className="absolute top-0 -right-5 w-[35%] sm:w-[28%] md:w-[25%] h-[600px] sm:h-[800px] md:h-[1000px] rounded-l-[150%_75%] overflow-hidden z-0"
           style={{
-            backgroundImage: "url('https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=1200')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
+            backgroundImage: `url(${image})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
           }}
-        >
-        </div>
+        />
 
-        {/* --- CENTER CIRCULAR IMAGE --- */}
-        {/* Adjusted 'right' to 15% to align with the thinner 25% width background image */}
-        <div className="absolute right-[15%] top-[380px] w-64 h-64 md:w-72 md:h-72 rounded-full border-[15px] border-[#f3f3f1] overflow-hidden z-30 shadow-sm">
-          <img 
-            src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?q=80&w=600" 
-            className="w-full h-full object-cover" 
-            alt="Hard drive recycling" 
+        {/* CENTER CIRCLE */}
+        <div className="absolute right-[10%] sm:right-[12%] top-[300px] sm:top-[350px] md:top-[380px] w-48 h-48 sm:w-56 sm:h-56 md:w-72 md:h-72 rounded-full overflow-hidden z-30">
+          <img
+            src={image2}
+            className="w-full h-full object-cover"
+            alt="Recycling"
           />
         </div>
 
-        {/* --- LEFT SEMI-CIRCLE --- */}
-        <div className="absolute -left-16 top-[420px] w-48 h-80 rounded-r-full overflow-hidden border-r-4 border-white/20 z-10 shadow-lg">
-           <img 
-            src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?q=80&w=600" 
-            className="w-full h-full object-cover" 
-            alt="Waste collection" 
+        {/* LEFT SEMI-CIRCLE */}
+        <div className="absolute -left-2 sm:-left-5 top-[400px] sm:top-[450px] md:top-[490px] w-36 sm:w-44 md:w-48 h-64 sm:h-72 md:h-80 rounded-r-full overflow-hidden z-10">
+          <img
+            src={image3}
+            className="w-full h-full object-cover"
+            alt="Waste Collection"
           />
         </div>
       </section>
 
-      {/* --- SECTION 2: SERVICES --- */}
-      <section className="relative px-10 md:px-32 -mt-10 pb-24 z-10">
-        <div className="mb-14">
-          <p className="text-gray-700 font-bold text-xs tracking-[0.2em] mb-4 uppercase">Services</p>
-          <h2 className="text-[52px] font-bold text-[#1A0185] mb-4">Our Recycling Services</h2>
-          <p className="text-gray-500 max-w-2xl text-[15px] leading-relaxed">
-            With a resolute commitment to transforming waste into wealth, we're not just recycling; we're rejuvenating industries.
+      {/* ================= SERVICES ================= */}
+      <section className="relative px-6 sm:px-10 md:px-20 lg:px-32 -mt-8 sm:-mt-10 pb-24 z-10">
+        <div className="mb-10 sm:mb-14">
+          <h4 className="text-[#060C0C] font-semibold text-xs sm:text-sm tracking-[0.15em] mb-2 uppercase">
+            SERVICES
+          </h4>
+
+          <h1 className="font-bold text-[#1A0185] text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4">
+            Our Recycling Services
+          </h1>
+
+          <p className="text-[#060C0C] max-w-full sm:max-w-xl text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed">
+            With a resolute commitment to transforming waste into wealth, we're
+            not just recycling; we're rejuvenating industries.
           </p>
         </div>
 
-        {/* Service Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* SERVICE CARDS */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <div key={index} className="bg-white rounded-[2.5rem] p-10 shadow-sm flex flex-col items-start transition-transform hover:-translate-y-1">
-              <div className="bg-black w-14 h-14 rounded-full mb-8 flex items-center justify-center">
-                {/* Icon Placeholder */}
-              </div>
-              <h3 className="text-2xl font-bold text-[#3451A3] mb-3">{service.title}</h3>
-              <p className="text-gray-400 text-sm leading-relaxed">
+            <div
+              key={index}
+              className="bg-white rounded-[2.5rem] p-6 sm:p-8 md:p-10 shadow-sm flex flex-col transition-transform hover:-translate-y-1"
+            >
+              {/* Icon */}
+              <div className="bg-black w-12 h-12 sm:w-14 sm:h-14 rounded-full mb-6 sm:mb-8" />
+
+              {/* Title */}
+              <h3 className="text-xl sm:text-2xl font-bold text-[#1A0185] mb-2 sm:mb-3">
+                {service.title}
+              </h3>
+
+              {/* Description */}
+              <p className="text-[#060C0C] text-sm sm:text-[15px] leading-relaxed mb-4 sm:mb-6">
                 Safe disposal of electronics with certified recycling processes.
               </p>
+
+              {/* Button */}
+              <button
+                className="mt-auto px-4 sm:px-6 py-2 sm:py-2.5 rounded-full text-sm sm:text-base font-semibold 
+                           bg-[#87BBD7] hover:bg-[#76a8c1] transition-all"
+              >
+                {service.btn}
+              </button>
             </div>
           ))}
         </div>

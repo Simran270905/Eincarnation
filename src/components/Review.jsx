@@ -1,88 +1,96 @@
 import React, { useState } from "react";
+import butterfly from "../assets/images/butterfly.png";
+import human from "../assets/images/Human.png";
 
-// Use empty string for avatar for now
 const Review = [
   {
     id: 1,
     text: `Motion Elements is the best online site to download AE templates for free. Choose from free templates for After Effects, free videos and free music. Our elements are commission-free, you can use them in various projects, in any type of media around the world. Get Free Bookmarklet Items.`,
     name: "Lihov Sergey",
     role: "UI/UX designer",
-    avatar: "", // empty for now
+    avatar: human,
   },
-  {
-    id: 2,
-    text: `Motion Elements is the best online site to download AE templates for free. Choose from free templates for After Effects, free videos and free music. Our elements are commission-free, you can use them in various projects, in any type of media around the world. Get Free Bookmarklet Items.`,
-    name: "Lihov ",
-    role: "UI/UX designer",
-    avatar: "", // empty for now
-  },
-  // Add more testimonials if needed
 ];
 
 export default function ClientTestimonials() {
   const [current, setCurrent] = useState(0);
 
-  const prevTestimonial = () => {
-    setCurrent(current === 0 ? Review.length - 1 : current - 1);
-  };
-
-  const nextTestimonial = () => {
-    setCurrent(current === Review.length - 1 ? 0 : current + 1);
-  };
+  const goPrev = () =>
+    setCurrent((prev) => (prev === 0 ? Review.length - 1 : prev - 1));
+  const goNext = () => setCurrent((prev) => (prev + 1) % Review.length);
 
   return (
-    <section className="bg-[#EFEDE3] py-24 relative px-8">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center md:items-start gap-12">
-        {/* Left side: heading and arrows */}
-        <div className="md:w-1/3 text-center md:text-left">
-          <p className="text-sm tracking-widest mb-2">CLIENT</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#2B1582] mb-2">
+    <section className="bg-[#EEEBD9] py-16 sm:py-20 md:py-28 px-4 sm:px-8 md:px-10 lg:px-20 relative">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-start gap-12 md:gap-20">
+
+        {/* LEFT CONTENT */}
+        <div className="pt-6 md:pt-10 text-center md:text-left">
+          <p className="text-xs sm:text-sm tracking-[0.3em] mb-4 text-[#060C0C]">
+            CLIENT
+          </p>
+
+          <h2 className="text-2xl sm:text-3xl md:text-[40px] leading-snug md:leading-tight font-bold text-[#1A0185] mb-3">
             Hear From <br /> Our Clients
           </h2>
-          <p className="text-gray-600 mb-6">Real Experiences. Real Impact.</p>
 
-          {/* Navigation buttons */}
-          <div className="flex gap-4 justify-center md:justify-start">
+          <p className="text-sm sm:text-base text-[#060C0C] mb-6 sm:mb-10">
+            Real Experiences. Real Impact.
+          </p>
+
+          {/* Arrows */}
+          <div className="flex justify-center md:justify-start gap-4">
             <button
-              onClick={prevTestimonial}
-              className="bg-blue-200 text-black w-10 h-10 rounded-full flex items-center justify-center text-lg"
+              onClick={goPrev}
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#9AC6E3] flex items-center justify-center text-lg hover:scale-105 transition"
             >
               &lt;
             </button>
             <button
-              onClick={nextTestimonial}
-              className="bg-blue-200 text-black w-10 h-10 rounded-full flex items-center justify-center text-lg"
+              onClick={goNext}
+              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#9AC6E3] flex items-center justify-center text-lg hover:scale-105 transition"
             >
               &gt;
             </button>
           </div>
         </div>
 
-        {/* Right side: testimonial card */}
-        <div className="md:w-2/3 relative">
-          <div className="bg-white p-8 rounded-xl shadow-md relative">
-            {/* Butterfly in the corner */}
-            <img
-              src=""
-              alt="decorative"
-              className="absolute -top-4 -right-4 w-12 h-12"
-            />
+        {/* RIGHT CARD */}
+        <div className="relative flex justify-center md:justify-end mt-10 md:mt-0">
+          <div className="bg-white rounded-2xl px-6 sm:px-10 py-10 sm:py-12 shadow-md max-w-md sm:max-w-lg relative w-full">
 
-            {/* Quote */}
-            <p className="text-xl mb-6">&ldquo;{Review[current].text}&rdquo;</p>
+            {/* Quote icon */}
+            <div className="text-5xl sm:text-[64px] font-serif leading-none mb-4 text-center">
+              "
+            </div>
 
-            {/* Client info */}
-            <div className="flex items-center gap-4 mt-4">
+            {/* Text */}
+            <p className="text-sm sm:text-base leading-6 text-[#060C0C] mb-6 sm:mb-8">
+              {Review[current].text}
+            </p>
+
+            {/* User */}
+            <div className="flex items-center gap-3 sm:gap-4">
               <img
                 src={Review[current].avatar}
                 alt={Review[current].name}
-                className="w-12 h-12 rounded-full bg-gray-300" // gray bg as placeholder
+                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover"
               />
               <div>
-                <p className="font-semibold">{Review[current].name}</p>
-                <p className="text-gray-500 text-sm">{Review[current].role}</p>
+                <p className="font-semibold text-sm sm:text-base">
+                  {Review[current].name}
+                </p>
+                <p className="text-xs sm:text-sm text-gray-500">
+                  {Review[current].role}
+                </p>
               </div>
             </div>
+
+            {/* Butterfly */}
+            <img
+              src={butterfly}
+              alt="decorative butterfly"
+              className="absolute -top-12 sm:-top-20 -right-16 sm:-right-24 w-20 sm:w-50 h-20 sm:h-50 object-contain pointer-events-none"
+            />
           </div>
         </div>
       </div>
