@@ -34,7 +34,7 @@ const Hero = () => {
   className="relative flex flex-col items-center sm:items-start sm:pl-4">
 
               {index !== 0 && (
-                <span className="hidden sm:block absolute  left-0 top-0 h-12 w-1 bg-[#1A0185] rounded-full"></span>
+                <span className="hidden sm:block absolute  left-0 top-0 h-14 w-1 bg-[#1A0185] rounded-full"></span>
               )}
               <p className="text-sm font-light ">{title}</p>
               {value && <p className="text-sm mt-1">{value}</p>}

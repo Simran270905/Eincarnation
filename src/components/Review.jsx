@@ -89,7 +89,7 @@ export default function ClientTestimonials() {
             <img
               src={butterfly}
               alt="decorative butterfly"
-              className="absolute -top-12 sm:-top-20 -right-16 sm:-right-24 w-20 sm:w-50 h-20 sm:h-50 object-contain pointer-events-none"
+              className="absolute -top-12 sm:-top-20 -right-16 sm:-right-24 w-20 sm:w-48 h-20 sm:h-48 object-contain pointer-events-none"
             />
           </div>
         </div>
