@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import butterfly from "../assets/images/butterfly.png";
-import human from "../assets/images/Human.png";
+import human from "../assets/images/human.png";
 
 const Review = [
   {
