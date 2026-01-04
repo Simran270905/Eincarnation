@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import NavbarMain from "../components/NavbarMain";
-import Footer from "../components/Footer";
+
 
 // Reusable scroll animation wrapper
 const ScrollSection = ({ children, delay = 0 }) => (
@@ -22,10 +22,6 @@ export default function EPR() {
       {/* Navbar stays static */}
       <NavbarMain />
 
-      
-      <ScrollSection delay={0.5}>
-        <Footer />
-      </ScrollSection>
     </div>
   );
 };

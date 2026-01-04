@@ -8,7 +8,7 @@ export default function ContactPage() {
   return (
     <section className="w-full bg-[#f1efe0] min-h-screen font-sans text-[#333]">
       {/* ================= HERO SECTION WITH MAP ================= */}
-      <div className="relative h-[60vh] w-full overflow-hidden rounded-b-[40px] shadow-lg">
+      <div className="relative h-[50vh] w-full overflow-hidden rounded-b-[40px] shadow-lg">
         {/* Google Map Background */}
         <iframe
           title="map"
