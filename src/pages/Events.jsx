@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import NavbarMain from "../components/NavbarMain";
-import Award1 from "../components/award1.jsx";  
+import Award1 from "../components/Award1.jsx";  
 import Footer from "../components/Footer";
 
 // Reusable scroll animation wrapper
