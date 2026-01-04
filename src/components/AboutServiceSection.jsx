@@ -11,7 +11,7 @@ const AboutServiceSection = () => {
     { title: "Recycle", btn: "Contact Us" },
     { title: "Hazardous Waste", btn: "Contact Us" },
     { title: "Metal Recovery", btn: "Contact Us" },
-    { title: "ERP", btn: "View More" },
+    { title: "EPR", btn: "View More" },
   ];
 
   return (

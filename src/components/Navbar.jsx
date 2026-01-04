@@ -1,54 +1,51 @@
-import React, { useState } from "react";
-import { Menu, X } from "lucide-react";
+import React from "react";
+import { NavLink } from "react-router-dom";
 
-const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const links = ["Home", "About Us", "Services", "Events", "Contact Us"];
-
+export default function Navbar() {
   return (
-    <nav className="w-full bg-[#F4F3EF] px-4 sm:px-8 md:px-16 lg:px-20 py-4 flex items-center justify-between relative">
+    <div className="relative z-10 flex items-center justify-between px-12 py-8 text-white">
       
       {/* Logo */}
-      <div className="w-12 h-12 rounded-full bg-black text-white flex items-center justify-center text-xs font-bold">
+      <NavLink
+        to="/"
+        className="h-12 w-12 rounded-full bg-black border border-gray-700 flex items-center justify-center text-[10px] font-bold tracking-widest"
+      >
         LOGO
-      </div>
+      </NavLink>
 
-      {/* Desktop Links */}
-      <ul className="hidden md:flex gap-8 lg:gap-10 text-sm font-medium text-[#2D3E48]">
-        {links.map((link, i) => (
-          <li key={i} className="cursor-pointer hover:text-[#1A0185] transition">
-            {link}
-          </li>
-        ))}
-      </ul>
+      {/* Links */}
+      <nav className="flex gap-10 text-[15px] font-medium">
+        <NavLink to="/" className="hover:opacity-80">
+          Home
+        </NavLink>
 
-      {/* Mobile Hamburger */}
-      <div className="md:hidden">
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="text-[#2D3E48]"
+        <NavLink
+          to="/about"
+          className={({ isActive }) =>
+            `hover:opacity-80 ${
+              isActive ? "border-b-2 border-white pb-1" : ""
+            }`
+          }
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
+          About Us
+        </NavLink>
 
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div className="absolute top-full left-0 w-full bg-[#F4F3EF] shadow-md flex flex-col items-center py-4 md:hidden z-50">
-          {links.map((link, i) => (
-            <li
-              key={i}
-              className="list-none py-2 text-base font-medium cursor-pointer hover:text-[#1A0185] transition"
-              onClick={() => setIsOpen(false)}
-            >
-              {link}
-            </li>
-          ))}
-        </div>
-      )}
-    </nav>
+        <NavLink to="/services" className="hover:opacity-80">
+          Services
+        </NavLink>
+
+        <NavLink to="/events" className="hover:opacity-80">
+          Events
+        </NavLink>
+
+        <NavLink to="/epr" className="hover:opacity-80">
+          EPR
+        </NavLink>
+
+        <NavLink to="/contact" className="hover:opacity-80">
+          Contact Us
+        </NavLink>
+      </nav>
+    </div>
   );
-};
-
-export default Navbar;
+}
