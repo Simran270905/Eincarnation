@@ -12,9 +12,9 @@ import logo6 from "../assets/images/logo6.png";
 const clients = [logo1, logo2, logo3, logo4, logo5, logo6];
 
 /* ============================
-   FLOATING LOGO
+   FLOATING LOGO COMPONENT
 ============================ */
-const FloatingLogo = ({ logo, radius, offset, duration, size, opacity = 1 }) => {
+const FloatingLogo = ({ logo, radius, offset, duration, size, isMobile }) => {
   const progress = useMotionValue(0);
 
   const angle = useTransform(progress, (v) => ((v + offset) % 180) - 90);
@@ -37,17 +37,16 @@ const FloatingLogo = ({ logo, radius, offset, duration, size, opacity = 1 }) => 
         y,
         width: size,
         height: size,
-        originX: 0.5,
-        originY: 0.5,
-        opacity,
+        marginLeft: -size / 2,
+        marginTop: -size / 2,
       }}
-      className="absolute top-1/2 right-0 -translate-y-1/2 pointer-events-auto"
+      className="absolute top-1/2 right-0 z-20"
     >
-      <div className="w-full h-full rounded-full bg-white/95 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-white/50 flex items-center justify-center p-3 sm:p-4 transition-all duration-500 hover:scale-110 hover:shadow-2xl hover:border-[#1A0185]/20">
+      <div className="w-full h-full rounded-full bg-white shadow-xl flex items-center justify-center p-3 sm:p-6 border-2 border-white">
         <img
           src={logo}
           alt="client"
-          className="w-full h-full object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+          className="w-full h-full object-contain opacity-100 transition-transform duration-300 hover:scale-110"
           loading="lazy"
         />
       </div>
@@ -56,11 +55,19 @@ const FloatingLogo = ({ logo, radius, offset, duration, size, opacity = 1 }) => 
 };
 
 /* ============================
-   SEMI ORBIT
+   SEMI ORBIT COMPONENT
 ============================ */
-const SemiOrbit = ({ logos, radius, size, duration, opacity }) => {
+const SemiOrbit = ({ logos, radius, size, duration, isMobile }) => {
   return (
     <>
+      <div 
+        className="absolute top-1/2 right-0 border-2 border-dashed border-gray-300 rounded-full -translate-y-1/2 opacity-0"
+        style={{
+          width: radius * 2,
+          height: radius * 2,
+          marginRight: -radius, 
+        }}
+      />
       {logos.map((logo, i) => (
         <FloatingLogo
           key={`${logo}-${i}`}
@@ -68,7 +75,7 @@ const SemiOrbit = ({ logos, radius, size, duration, opacity }) => {
           radius={radius}
           size={size}
           duration={duration}
-          opacity={opacity}
+          isMobile={isMobile}
           offset={(180 / logos.length) * i}
         />
       ))}
@@ -77,92 +84,65 @@ const SemiOrbit = ({ logos, radius, size, duration, opacity }) => {
 };
 
 /* ============================
-   MAIN SECTION
+   MAIN CLIENTS SECTION
 ============================ */
 export default function Clients() {
-  const [windowWidth, setWindowWidth] = React.useState(0);
+  const [isMobile, setIsMobile] = React.useState(false);
 
   React.useEffect(() => {
-    setWindowWidth(window.innerWidth);
-    const handleResize = () => setWindowWidth(window.innerWidth);
+    const handleResize = () => setIsMobile(window.innerWidth < 768);
+    handleResize();
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const isMobile = windowWidth < 768;
-  const isTablet = windowWidth >= 768 && windowWidth < 1280;
-
-  /**
-   * RADIUS LOGIC
-   * We increased the gap between outer and inner radii here.
-   * Desktop Gap: 160px | Mobile Gap: 80px
-   */
-  const outerRadius = isMobile ? 180 : isTablet ? 280 : 380;
-  const innerRadius = isMobile ? 100 : isTablet ? 140 : 220;
-  
-  const outerSize = isMobile ? 55 : 96;
-  const innerSize = isMobile ? 45 : 75;
+  const outerRadius = isMobile ? 220 : 550;
+  const innerRadius = isMobile ? 140 : 350;
+  const outerSize = isMobile ? 70 : 150; 
+  const innerSize = isMobile ? 55 : 120;
 
   return (
-    <section className="relative py-24 px-6 sm:px-12 md:px-24 lg:px-32 flex flex-col md:flex-row items-center md:items-start min-h-[650px] md:min-h-[850px] bg-[#fcfcfb] overflow-hidden">
+    <section className="relative py-20 sm:py-32 px-6 sm:px-12 md:px-24 lg:px-32 flex flex-col md:flex-row items-center justify-center min-h-[600px] md:min-h-[800px] bg-[#fcfcfb] overflow-hidden">
       
-      {/* LEFT CONTENT */}
-      <motion.div
-        className="z-30 w-full md:w-1/2 mt-10 md:mt-32 text-center md:text-left"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "circOut" }}
-        viewport={{ once: true }}
-      >
-        <h4 className="text-[#060C0C] font-bold text-[10px] tracking-[0.4em] uppercase opacity-50 mb-4">
-          TRUSTED PARTNERS
-        </h4>
+      {/* LEFT CONTENT WRAPPER */}
+      <div className="max-w-6xl w-full mx-auto z-30 flex items-center">
+        <motion.div
+          className="w-full md:w-1/2 text-left"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "circOut" }}
+          viewport={{ once: true }}
+        >
+          <h4 className="text-[#060C0C] font-bold text-[10px] tracking-[0.4em] uppercase opacity-50 mb-4">
+            TRUSTED PARTNERS
+          </h4>
 
-        <h1 className="font-black text-[#1A0185] text-4xl sm:text-5xl lg:text-7xl mb-6 leading-[1.1]">
-          Our Clients
-        </h1>
+          <h1 className="text-[#1A0185] text-4xl sm:text-5xl lg:text-7xl font-bold mb-6 leading-[1.1] tracking-tight">
+            Our Clients
+          </h1>
 
-        <p className="text-[#060C0C]/60 mb-10 leading-relaxed text-base sm:text-lg max-w-sm mx-auto md:mx-0">
-          We collaborate with forward-thinking organizations to build 
-          a sustainable circular economy together.
-        </p>
-      </motion.div>
+          <p className="text-[#060C0C]/60 leading-relaxed text-base sm:text-lg max-w-sm">
+            Reliable recycling services that reduce waste and turn materials into reusable resources.
+          </p>
+        </motion.div>
+      </div>
 
-      {/* ORBITAL AREA */}
-      <div className="absolute top-0 right-0 h-full w-[100vw] md:w-[65vw] max-w-[1200px] overflow-hidden pointer-events-none z-10">
-        {/* OUTER ARC (Primary Orbit) */}
+      {/* ORBITAL ANIMATION LAYER */}
+      <div className="absolute top-0 right-0 h-full w-full pointer-events-none z-10">
         <SemiOrbit
           logos={clients}
           radius={outerRadius}
           size={outerSize}
-          duration={30} // Slower for premium feel
-          opacity={1}
+          duration={30}
+          isMobile={isMobile}
         />
-
-        {/* INNER ARC (Secondary Orbit - Faded for Depth) */}
         <SemiOrbit
           logos={clients.slice(0, 4)}
           radius={innerRadius}
           size={innerSize}
-          duration={22}
-          opacity={0.6}
+          duration={20}
+          isMobile={isMobile}
         />
-      </div>
-
-      {/* BACKGROUND DEPTH ELEMENTS */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        {/* Soft orbit guide lines */}
-        <div 
-          className="absolute top-1/2 right-0 -translate-y-1/2 border border-[#1A0185]/5 rounded-full"
-          style={{ width: outerRadius * 2, height: outerRadius * 2, transform: `translate(50%, -50%)` }}
-        />
-        <div 
-          className="absolute top-1/2 right-0 -translate-y-1/2 border border-[#1A0185]/5 rounded-full"
-          style={{ width: innerRadius * 2, height: innerRadius * 2, transform: `translate(50%, -50%)` }}
-        />
-        
-        {/* Gradient Glows */}
-        <div className="absolute top-[-20%] right-[-10%] w-[600px] h-[600px] bg-gradient-to-br from-[#1A0185]/5 to-transparent rounded-full blur-[100px]" />
       </div>
     </section>
   );

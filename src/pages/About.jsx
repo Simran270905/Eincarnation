@@ -28,27 +28,27 @@ export default function About() {
         <Hero />
       </ScrollSection>
 
-      <ScrollSection delay={0.1}>
+      <ScrollSection delay={0.025}>
         <AboutIntro />
       </ScrollSection>
 
-      <ScrollSection delay={0.2}>
+      <ScrollSection delay={0.05}>
         <History />
       </ScrollSection>
 
-      <ScrollSection delay={0.3}>
+      <ScrollSection delay={0.075}>
         <CoreTeam />
       </ScrollSection>
 
-      <ScrollSection delay={0.4}>
+      <ScrollSection delay={0.1}>
         <Certificates />
       </ScrollSection>
 
-      <ScrollSection delay={0.5}>
+      <ScrollSection delay={0.125}>
         <ContactForm />
       </ScrollSection>
 
-      <ScrollSection delay={0.6}>
+      <ScrollSection delay={0.150}>
         <Footer />
       </ScrollSection>
     </div>

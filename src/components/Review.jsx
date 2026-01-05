@@ -10,6 +10,13 @@ const Review = [
     role: "UI/UX designer",
     avatar: human,
   },
+  {
+    id: 2,
+    text: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.`,
+    name: "Nitin Sharma",
+    role: "React Developer",
+    avatar: human,
+  },
 ];
 
 export default function ClientTestimonials() {
@@ -21,19 +28,22 @@ export default function ClientTestimonials() {
 
   return (
     <section className="bg-[#EEEBD9] py-16 sm:py-20 md:py-28 px-6 sm:px-12 md:px-20 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-16 md:gap-20">
+      {/* Reduced the gap-20 to gap-8 and kept max-w-7xl so the text 
+         stays in the same outer position, but the card sits closer.
+      */}
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-8 lg:gap-12">
 
-        {/* LEFT CONTENT */}
+        {/* LEFT CONTENT - Remains in place */}
         <div className="text-center md:text-left z-10">
           <p className="text-xs sm:text-sm tracking-[0.4em] font-bold mb-4 text-[#060C0C] uppercase opacity-60">
             CLIENT
           </p>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl leading-tight font-black text-[#1A0185] mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl leading-tight text-[#1A0185] mb-4">
             Hear From <br className="hidden md:block" /> Our Clients
           </h2>
 
-          <p className="text-base sm:text-lg text-[#060C0C] font-medium opacity-80 mb-8 sm:mb-12">
+          <p className="text-base sm:text-lg text-[#060C0C] opacity-80 mb-8 sm:mb-12">
             Real Experiences. Real Impact.
           </p>
 
@@ -56,9 +66,12 @@ export default function ClientTestimonials() {
           </div>
         </div>
 
-        {/* RIGHT CARD */}
-        <div className="relative flex justify-center md:justify-end mt-12 md:mt-0">
-          <div className="bg-white rounded-[2rem] px-8 sm:px-12 py-12 sm:py-16 shadow-xl max-w-lg relative w-full border border-black/5">
+        {/* RIGHT CARD - Shifted left using md:justify-start and a max-width constraint */}
+        <div className="relative flex justify-center md:justify-start mt-12 md:mt-0">
+          {/* Added md:-ml-12 (negative margin) to pull it even closer 
+             to the text without moving the text itself.
+          */}
+          <div className="bg-white rounded-[2rem] px-8 sm:px-12 py-12 sm:py-16 shadow-xl max-w-lg relative w-full border border-black/5 md:-ml-12 lg:-ml-20">
 
             {/* Quote icon */}
             <div className="absolute top-8 left-8 text-6xl font-serif text-[#9AC6E3] opacity-40 select-none">
@@ -91,7 +104,7 @@ export default function ClientTestimonials() {
             <img
               src={butterfly}
               alt=""
-              className="absolute -top-16 -right-8 sm:-top-24 sm:-right-24 w-32 sm:w-56 h-auto object-contain pointer-events-none drop-shadow-2xl animate-float"
+              className="absolute -top-16 -right-8 sm:-top-20 sm:-right-16 w-32 sm:w-52 h-auto object-contain pointer-events-none drop-shadow-2xl animate-float"
             />
           </div>
         </div>

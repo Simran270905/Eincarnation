@@ -14,7 +14,7 @@ const ScrollSection = ({ children, delay = 0 }) => (
   <motion.div
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8, ease: "easeOut", delay }}
+    transition={{ duration: 0.5, ease: "easeOut", delay }}
     viewport={{ once: true, amount: 0.3 }}
   >
     {children}
@@ -31,23 +31,23 @@ export default function Home() {
         <HeroMain />
       </ScrollSection>
 
-      <ScrollSection delay={0.1}>
+      <ScrollSection delay={0.05}>
         <AboutServicesSection />
       </ScrollSection>
 
-      <ScrollSection delay={0.2}>
+      <ScrollSection delay={0.05}>
         <Client />
       </ScrollSection>
 
-      <ScrollSection delay={0.3}>
+      <ScrollSection delay={0.05}>
         <Review />
       </ScrollSection>
 
-      <ScrollSection delay={0.4}>
+      <ScrollSection delay={0.125}>
         <ContactForm />
       </ScrollSection>
 
-      <ScrollSection delay={0.5}>
+      <ScrollSection delay={0.05}>
         <Footer />
       </ScrollSection>
     </div>
