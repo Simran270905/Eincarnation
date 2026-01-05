@@ -20,20 +20,20 @@ export default function ClientTestimonials() {
   const goNext = () => setCurrent((prev) => (prev + 1) % Review.length);
 
   return (
-    <section className="bg-[#EEEBD9] py-16 sm:py-20 md:py-28 px-4 sm:px-8 md:px-10 lg:px-20 relative">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-start gap-12 md:gap-20">
+    <section className="bg-[#EEEBD9] py-16 sm:py-20 md:py-28 px-6 sm:px-12 md:px-20 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 items-center gap-16 md:gap-20">
 
         {/* LEFT CONTENT */}
-        <div className="pt-6 md:pt-10 text-center md:text-left">
-          <p className="text-xs sm:text-sm tracking-[0.3em] mb-4 text-[#060C0C]">
+        <div className="text-center md:text-left z-10">
+          <p className="text-xs sm:text-sm tracking-[0.4em] font-bold mb-4 text-[#060C0C] uppercase opacity-60">
             CLIENT
           </p>
 
-          <h2 className="text-2xl sm:text-3xl md:text-[40px] leading-snug md:leading-tight font-bold text-[#1A0185] mb-3">
-            Hear From <br /> Our Clients
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl leading-tight font-black text-[#1A0185] mb-4">
+            Hear From <br className="hidden md:block" /> Our Clients
           </h2>
 
-          <p className="text-sm sm:text-base text-[#060C0C] mb-6 sm:mb-10">
+          <p className="text-base sm:text-lg text-[#060C0C] font-medium opacity-80 mb-8 sm:mb-12">
             Real Experiences. Real Impact.
           </p>
 
@@ -41,59 +41,71 @@ export default function ClientTestimonials() {
           <div className="flex justify-center md:justify-start gap-4">
             <button
               onClick={goPrev}
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#9AC6E3] flex items-center justify-center text-lg hover:scale-105 transition"
+              className="w-12 h-12 rounded-full bg-[#9AC6E3] hover:bg-[#1A0185] hover:text-white flex items-center justify-center text-xl transition-all duration-300 shadow-md active:scale-90"
+              aria-label="Previous testimonial"
             >
-              &lt;
+              ←
             </button>
             <button
               onClick={goNext}
-              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#9AC6E3] flex items-center justify-center text-lg hover:scale-105 transition"
+              className="w-12 h-12 rounded-full bg-[#9AC6E3] hover:bg-[#1A0185] hover:text-white flex items-center justify-center text-xl transition-all duration-300 shadow-md active:scale-90"
+              aria-label="Next testimonial"
             >
-              &gt;
+              →
             </button>
           </div>
         </div>
 
         {/* RIGHT CARD */}
-        <div className="relative flex justify-center md:justify-end mt-10 md:mt-0">
-          <div className="bg-white rounded-2xl px-6 sm:px-10 py-10 sm:py-12 shadow-md max-w-md sm:max-w-lg relative w-full">
+        <div className="relative flex justify-center md:justify-end mt-12 md:mt-0">
+          <div className="bg-white rounded-[2rem] px-8 sm:px-12 py-12 sm:py-16 shadow-xl max-w-lg relative w-full border border-black/5">
 
             {/* Quote icon */}
-            <div className="text-5xl sm:text-[64px] font-serif leading-none mb-4 text-center">
-              "
+            <div className="absolute top-8 left-8 text-6xl font-serif text-[#9AC6E3] opacity-40 select-none">
+              “
             </div>
 
             {/* Text */}
-            <p className="text-sm sm:text-base leading-6 text-[#060C0C] mb-6 sm:mb-8">
+            <p className="relative z-10 text-base sm:text-lg leading-relaxed text-[#060C0C] mb-10 italic">
               {Review[current].text}
             </p>
 
             {/* User */}
-            <div className="flex items-center gap-3 sm:gap-4">
+            <div className="flex items-center gap-4 border-t border-gray-100 pt-8">
               <img
                 src={Review[current].avatar}
                 alt={Review[current].name}
-                className="w-10 h-10 sm:w-12 sm:h-12 rounded-full object-cover"
+                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover ring-4 ring-[#EEEBD9]"
               />
-              <div>
-                <p className="font-semibold text-sm sm:text-base">
+              <div className="text-left">
+                <p className="font-bold text-base sm:text-lg text-[#1A0185]">
                   {Review[current].name}
                 </p>
-                <p className="text-xs sm:text-sm text-gray-500">
+                <p className="text-xs sm:text-sm font-semibold tracking-wide text-gray-400 uppercase">
                   {Review[current].role}
                 </p>
               </div>
             </div>
 
-            {/* Butterfly */}
+            {/* Butterfly Decoration */}
             <img
               src={butterfly}
-              alt="decorative butterfly"
-              className="absolute -top-12 sm:-top-20 -right-16 sm:-right-24 w-20 sm:w-48 h-20 sm:h-48 object-contain pointer-events-none"
+              alt=""
+              className="absolute -top-16 -right-8 sm:-top-24 sm:-right-24 w-32 sm:w-56 h-auto object-contain pointer-events-none drop-shadow-2xl animate-float"
             />
           </div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   );
 }

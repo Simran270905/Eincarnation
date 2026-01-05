@@ -18,28 +18,34 @@ const ContactForm = () => {
   };
 
   const inputClasses = `
-    w-full bg-transparent border-b border-white/60 py-3
-    text-white placeholder:text-white/70 placeholder:uppercase
-    placeholder:text-[10px] sm:placeholder:text-xs tracking-widest
-    outline-none focus:border-white transition-colors
+    w-full bg-transparent border-b border-white/40 py-4
+    text-white placeholder:text-white/50 placeholder:uppercase
+    placeholder:text-[10px] sm:placeholder:text-xs tracking-[0.2em]
+    outline-none focus:border-white focus:border-b-2 transition-all duration-300
+    text-sm sm:text-base
   `;
 
   return (
-    <div className="w-full bg-[#3451A3] text-white p-6 sm:p-8 md:p-16">
+    <div className="w-full bg-[#3451A3] text-white py-16 px-6 sm:px-10 md:py-24 lg:px-20">
       <div className="max-w-6xl mx-auto">
+        
         {/* Header Section */}
-        <header className="mb-10 md:mb-12 text-center md:text-left">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 tracking-tight">
+        <header className="mb-12 md:mb-20 text-center md:text-left">
+          <div className="inline-block mb-4">
+            <span className="text-[10px] tracking-[0.4em] uppercase text-white/60 font-bold">Get In Touch</span>
+            <div className="h-[1px] w-12 bg-[#87BBD7] mt-1 mx-auto md:mx-0"></div>
+          </div>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-black mb-6 tracking-tight">
             Let's Talk
           </h1>
-          <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-md mx-auto md:mx-0 leading-snug">
-            Got something on your mind? Fill out the form and we will get back to you.
+          <p className="text-base sm:text-lg md:text-xl text-white/80 max-w-lg mx-auto md:mx-0 font-light leading-relaxed">
+            Got something on your mind? Fill out the form below and our team will get back to you within 24 hours.
           </p>
         </header>
 
         {/* Form Section */}
-        <form className="space-y-8 md:space-y-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 sm:gap-x-8 gap-y-6 sm:gap-y-8">
+        <form className="space-y-12" onSubmit={(e) => e.preventDefault()}>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
             <input
               type="text"
               name="firstName"
@@ -57,21 +63,21 @@ const ContactForm = () => {
             <input
               type="email"
               name="email"
-              placeholder="Email"
+              placeholder="Email Address"
               className={inputClasses}
               onChange={handleChange}
             />
             <input
               type="tel"
               name="phone"
-              placeholder="Phone"
+              placeholder="Phone Number"
               className={inputClasses}
               onChange={handleChange}
             />
             <input
               type="text"
               name="city"
-              placeholder="Select City"
+              placeholder="City"
               className={inputClasses}
               onChange={handleChange}
             />
@@ -85,37 +91,43 @@ const ContactForm = () => {
             <input
               type="text"
               name="industry"
-              placeholder="Select Industry"
+              placeholder="Industry Type"
               className={inputClasses}
               onChange={handleChange}
             />
             <input
               type="text"
               name="services"
-              placeholder="Services You Are Looking For"
+              placeholder="Services Needed"
               className={inputClasses}
               onChange={handleChange}
             />
           </div>
 
           {/* Footer Section */}
-          <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8 pt-2 sm:pt-4">
-            <div className="w-full md:w-5/12">
+          <div className="flex flex-col lg:flex-row items-stretch lg:items-end justify-between gap-10 pt-6">
+            <div className="w-full lg:w-7/12">
+              <label className="text-[10px] tracking-[0.2em] text-white/50 uppercase font-bold mb-4 block">
+                Your Message
+              </label>
               <textarea
                 name="comment"
-                placeholder="WRITE YOUR COMMENT"
-                rows="4"
-                className="w-full bg-transparent border border-white/60 rounded-xl p-4 text-white placeholder:text-white/70 outline-none focus:border-white text-sm sm:text-base transition-colors"
+                placeholder="HOW CAN WE HELP YOU?"
+                rows="3"
+                className="w-full bg-white/5 border border-white/20 rounded-2xl p-6 text-white placeholder:text-white/30 outline-none focus:border-[#87BBD7] focus:bg-white/10 text-sm sm:text-base transition-all duration-300 backdrop-blur-sm"
                 onChange={handleChange}
               ></textarea>
             </div>
 
-            <button
-              type="submit"
-              className="bg-[#87BBD7] text-slate-900 px-8 sm:px-10 py-3 rounded-full font-bold flex items-center gap-2 sm:gap-3 hover:bg-[#A9D1E0] transition-all uppercase text-sm sm:text-base tracking-widest self-start md:self-auto"
-            >
-              Submit <span className="text-xl">→</span>
-            </button>
+            <div className="flex items-center justify-center md:justify-end lg:pb-2">
+              <button
+                type="submit"
+                className="group relative bg-[#87BBD7] text-[#1A2E63] px-12 py-5 rounded-full font-black flex items-center gap-4 hover:bg-white hover:shadow-[0_20px_40px_rgba(0,0,0,0.2)] transition-all duration-500 uppercase text-sm tracking-[0.15em] active:scale-95"
+              >
+                Submit Form 
+                <span className="text-2xl transition-transform duration-300 group-hover:translate-x-2">→</span>
+              </button>
+            </div>
           </div>
         </form>
       </div>

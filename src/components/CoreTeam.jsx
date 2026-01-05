@@ -27,44 +27,44 @@ const teamData = [
 
 export default function CoreTeam() {
   return (
-    <section className="bg-[#F9F9F9] py-28 font-sans">
+    <section className="bg-[#F9F9F9] py-16 md:py-28 font-sans overflow-x-hidden">
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* HEADER */}
-        <div className="mb-20">
-          <p className="text-sm font-semibold uppercase tracking-widest text-black mb-2">
+        <div className="mb-12 md:mb-20">
+          <p className="text-xs md:text-sm font-semibold uppercase tracking-widest text-black mb-2">
             ABOUT
           </p>
-          <h1 className="text-[52px] font-bold text-[#1A0185] leading-tight">
+          <h1 className="text-4xl md:text-[52px] font-bold text-[#1A0185] leading-tight">
             Our Core Team
           </h1>
         </div>
 
         {/* CONTENT */}
-        <div className="space-y-36">
+        <div className="space-y-20 md:space-y-36">
           {teamData.map((item, index) => {
             if (item.type === "member") {
               return (
                 <div
                   key={index}
-                  className={`flex flex-col md:flex-row items-start gap-20 ${
+                  className={`flex flex-col md:flex-row items-center md:items-start gap-10 md:gap-20 ${
                     item.reverse ? "md:flex-row-reverse" : ""
                   }`}
                 >
-                  {/* PROFILE CIRCLE (unchanged color) */}
+                  {/* PROFILE CIRCLE */}
                   <div className="w-full md:w-2/5 flex justify-center">
-                    <div className="w-72 h-72 lg:w-80 lg:h-80 rounded-full bg-[#EEEBD9]" />
+                    <div className="w-60 h-60 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full bg-[#EEEBD9] flex-shrink-0" />
                   </div>
 
                   {/* TEXT */}
-                  <div className="w-full md:w-3/5">
-                    <h3 className="text-2xl font-bold text-[#2d3e50] mb-1">
+                  <div className="w-full md:w-3/5 text-center md:text-left">
+                    <h3 className="text-xl md:text-2xl font-bold text-[#2d3e50] mb-1">
                       {item.name}
                     </h3>
-                    <p className="text-xs font-bold uppercase tracking-widest text-gray-500 mb-6">
+                    <p className="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-500 mb-4 md:mb-6">
                       {item.role}
                     </p>
-                    <p className="text-[15px] leading-relaxed text-gray-700 text-justify max-w-xl">
+                    <p className="text-sm md:text-[15px] leading-relaxed text-gray-700 md:text-justify max-w-xl mx-auto md:mx-0">
                       {item.description}
                     </p>
                   </div>
@@ -74,13 +74,13 @@ export default function CoreTeam() {
 
             {/* FEATURE BLOCK */}
             return (
-              <div key={index} className="pt-20">
-                <div className="w-full h-[260px] bg-[#EEEBD9] rounded-[2.5rem] mb-14" />
-                <div className="max-w-4xl">
-                  <h2 className="text-[52px] font-sembold text-[#1e1494] mb-4">
+              <div key={index} className="pt-10 md:pt-20">
+                <div className="w-full h-[180px] sm:h-[260px] bg-[#EEEBD9] rounded-[1.5rem] md:rounded-[2.5rem] mb-8 md:mb-14" />
+                <div className="max-w-4xl text-center md:text-left mx-auto md:mx-0">
+                  <h2 className="text-3xl md:text-[52px] font-semibold text-[#1e1494] mb-4">
                     {item.title}
                   </h2>
-                  <p className="text-[15px] leading-relaxed text-gray-700">
+                  <p className="text-sm md:text-[15px] leading-relaxed text-gray-700">
                     {item.description}
                   </p>
                 </div>
