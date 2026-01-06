@@ -12,7 +12,7 @@ import {
 const Footer = () => {
   return (
     <footer className="w-full bg-[#132441] text-white py-12 md:py-16 px-6 md:px-20">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
+      <div className="max-w-7xl mx-auto grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8">
         
         {/* Column 1: Logo & Socials */}
         <div className="flex flex-col items-center sm:items-start text-center sm:text-left space-y-6">

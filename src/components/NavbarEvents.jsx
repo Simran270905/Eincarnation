@@ -43,43 +43,41 @@ export default function Navbar() {
         ))}
       </nav>
 
-      {/* Mobile Menu Button - Shown only on small screens */}
-      <button
-        onClick={toggleMenu}
-        className="lg:hidden p-2 text-[#2D3E48] hover:bg-black/5 rounded-lg transition-colors"
-        aria-label="Toggle Menu"
-      >
-        {isOpen ? <X size={28} /> : <Menu size={28} />}
-      </button>
+      {/* Mobile Hamburger Button */}
+      <div className="md:hidden flex items-center">
+        <button
+          onClick={toggleMenu}
+          className="text-[#2D3E48] p-2 hover:bg-black/5 rounded-lg transition-colors"
+          aria-label="Toggle navigation"
+        >
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
+        </button>
+      </div>
 
-      {/* Mobile Drawer Overlay */}
+      {/* Mobile Menu Dropdown */}
       <div
-        className={`fixed inset-0 bg-white z-40 transition-transform duration-300 ease-in-out lg:hidden ${
-          isOpen ? "translate-x-0" : "translate-x-full"
+        className={`absolute top-full left-0 w-full bg-[#F4F3EF] shadow-xl border-t border-black/5 flex flex-col items-center py-6 md:hidden transition-all duration-300 ease-in-out origin-top ${
+          isOpen
+            ? "opacity-100 scale-y-100 visible"
+            : "opacity-0 scale-y-0 invisible"
         }`}
       >
-        <div className="flex flex-col h-full p-8">
-          <div className="flex justify-end mb-12">
-            <button onClick={toggleMenu}>
-              <X size={32} />
-            </button>
-          </div>
-          
-          <nav className="flex flex-col gap-8 text-center text-xl font-semibold">
-            {navLinks.map((link) => (
-              <NavLink
-                key={link.to}
-                to={link.to}
-                onClick={() => setIsOpen(false)}
-                className={({ isActive }) =>
-                  isActive ? "text-blue-600" : "text-[#2D3E48]"
-                }
-              >
-                {link.name}
-              </NavLink>
-            ))}
-          </nav>
-        </div>
+        {navLinks.map((link) => (
+          <NavLink
+            key={link.to}
+            to={link.to}
+            onClick={() => setIsOpen(false)}
+            className={({ isActive }) =>
+              `w-full text-center py-4 text-base font-semibold transition-colors ${
+                isActive
+                  ? "bg-[#1A0185] text-white"
+                  : "text-[#2D3E48] hover:bg-black/5"
+              }`
+            }
+          >
+            {link.name}
+          </NavLink>
+        ))}
       </div>
     </div>
   );

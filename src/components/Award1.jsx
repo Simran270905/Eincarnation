@@ -7,12 +7,12 @@ export default function ReversingGallery() {
   const images = [image1, image2, image3];
 
   return (
-    <section className="w-screen min-h-screen flex flex-col items-center justify-center bg-[#f4f2eb] overflow-hidden">
+    <section className="w-screen h-[50vh] flex flex-col justify-center bg-[#f4f2eb] overflow-hidden">
       
-      {/* Fullscreen Image Section */}
-      <div className="relative w-[92%] h-[75vh] p-8 rounded-[28px] bg-[#efe9d6] overflow-hidden">
+      {/* Half-page Image Section */}
+      <div className="relative w-[85%] h-full p-4 rounded-[28px] bg-[#efe9d6] overflow-hidden mx-auto">
         <motion.div
-          className="absolute inset-8 flex h-[calc(100%-64px)] w-[200%] gap-6"
+          className="absolute inset-4 flex h-[calc(100%-16px)] w-[200%] gap-4"
           animate={{ x: ["0%", "-90%"] }}
           transition={{
             duration: 20,
@@ -33,8 +33,8 @@ export default function ReversingGallery() {
       </div>
 
       {/* Text Content */}
-      <div className="w-[92%] mt-8">
-        <h3 className="text-[#1a0b91] font-extrabold text-3xl md:text-4xl">
+      <div className="w-[92%] mt-4 mx-auto">
+        <h3 className="text-[#1a0b91] mb-10 font-extrabold text-2xl md:text-3xl text-center">
           Dev Dynaneshwar Society, Andheri
         </h3>
       </div>
