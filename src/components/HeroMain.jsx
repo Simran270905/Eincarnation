@@ -4,7 +4,7 @@ import heroImage from "../assets/images/hero.png";
 const HeroMain = () => {
   return (
     <section className="relative w-full bg-[#D7E8F2] mt-5 overflow-hidden">
-      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-16 lg:px-24 pt-12 pb-24 md:pb-32">
+      <div className="max-w-[1440px] mx-auto px-6 sm:px-10 md:px-16 lg:px-24 pt-20 pb-24 md:pb-32">
         
         {/* HERO GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-10 lg:gap-12">
