@@ -8,24 +8,27 @@ export default function ContactPage() {
     <section className="w-full bg-[#f1efe0] min-h-screen font-sans text-[#333]">
       
       {/* ================= HERO SECTION WITH MAP ================= */}
-      <div className="relative h-[40vh] sm:h-[50vh] w-full overflow-hidden rounded-b-[30px] sm:rounded-b-[40px] shadow-lg">
+      {/* Added id="map-section" so links can target this specific area */}
+      <div id="map-section" className="relative h-[40vh] sm:h-[50vh] w-full overflow-hidden rounded-b-[30px] sm:rounded-b-[40px] shadow-lg">
+        
         {/* Google Map Background */}
         <iframe
           title="map"
           className="absolute inset-0 w-full h-full grayscale brightness-[0.4] contrast-125"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.7928234857037!2d72.90956907604473!3d19.0728469520743!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c62dc1033285%3A0x6e9a6560ecd4541b!2sBhaveshwar%20Arcade!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3770.1985347201735!2d72.909569!3d19.088015!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7f075775f73%3A0xc3f0b3f54546419e!2sBhaveshwar%20Arcade!5e0!3m2!1sen!2sin!4v1700000000000"
           style={{ border: 0 }}
           allowFullScreen=""
           loading="lazy"
         />
         
         {/* Navbar Overlay */}
+        {/* The Navbar is kept inside the relative parent so it sits "on top" of the map */}
         <div className="absolute top-0 left-0 w-full z-20">
             <Navbar />
         </div>
 
         {/* Hero Text Content */}
-        <div className="relative z-10 max-w-7xl mx-auto h-full flex flex-col justify-end pb-8 sm:pb-16 px-6 sm:px-12">
+        <div className="relative z-10 max-w-7xl mx-auto h-full flex flex-col justify-end pb-8 sm:pb-16 px-6 sm:px-12 pointer-events-none">
           <p className="text-white text-[10px] sm:text-xs font-semibold tracking-[0.2em] mb-2 opacity-90 uppercase">
             CONTACT US
           </p>
@@ -89,20 +92,17 @@ export default function ContactPage() {
             </div>
           </form>
 
-          {/* Decorative Robot Image */}
           <div className="mt-12 hidden md:block">
-             <img 
-               src={robot}
-               alt="Robot character" 
-               className="w-32 sm:w-48 opacity-90 object-contain"
-             />
+              <img 
+                src={robot}
+                alt="Robot character" 
+                className="w-32 sm:w-48 opacity-90 object-contain"
+              />
           </div>
         </div>
 
         {/* RIGHT: INFO CARDS */}
         <div className="lg:col-span-5 xl:col-span-4 space-y-6 order-1 lg:order-2">
-          
-          {/* Address Card */}
           <div className="bg-white rounded-[30px] p-6 sm:p-8 shadow-sm">
             <div className="flex items-center gap-3 mb-4 text-[#5b7c56]">
               <MapPin size={22} strokeWidth={2.5} />
@@ -128,7 +128,6 @@ export default function ContactPage() {
             </div>
           </div>
 
-          {/* Career Card */}
           <div className="bg-white rounded-[30px] p-6 sm:p-8 shadow-sm">
             <div className="flex items-center gap-3 mb-4 text-[#5b7c56]">
               <UserCircle size={22} strokeWidth={2.5} />
@@ -138,7 +137,6 @@ export default function ContactPage() {
               Join our team and help us build a sustainable future. Explore opportunities to grow your career with us.
             </p>
           </div>
-          
         </div>
       </div>
     </section>

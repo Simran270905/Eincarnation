@@ -24,7 +24,7 @@ const FloatingLogo = ({ logo, radius, offset, duration, size, isMobile }) => {
 
   const mobileAngle = useTransform(
     progress,
-    (v) => (v + offset) % 180
+    (v) => (v + offset) % 360 
   );
 
   const x = useTransform(isMobile ? mobileAngle : desktopAngle, (a) =>
@@ -62,7 +62,7 @@ const FloatingLogo = ({ logo, radius, offset, duration, size, isMobile }) => {
         marginTop: -size / 2,
       }}
     >
-      <div className="w-full h-full rounded-full bg-white shadow-xl flex items-center justify-center p-3 sm:p-6 border-2 border-white">
+      <div className="w-full h-full rounded-full bg-white shadow-xl flex items-center justify-center p-2 sm:p-6 border-2 border-white">
         <img
           src={logo}
           alt="client"
@@ -100,7 +100,7 @@ const SemiOrbit = ({ logos, radius, size, duration, isMobile }) => (
         size={size}
         duration={duration}
         isMobile={isMobile}
-        offset={(180 / logos.length) * i}
+        offset={( (isMobile ? 360 : 180) / logos.length) * i}
       />
     ))}
   </>
@@ -119,20 +119,19 @@ export default function Clients() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  /* Radii & sizes */
   const outerRadius = isMobile ? 180 : 500;
-  const innerRadius = isMobile ? 120 : 300;
+  const innerRadius = isMobile ? 90 : 300;
 
-  const outerSize = isMobile ? 60 : 150;
-  const innerSize = isMobile ? 45 : 120;
+  const outerSize = isMobile ? 80 : 150;
+  const innerSize = isMobile ? 60 : 120;
 
   return (
     <section
       className={`relative py-12 sm:py-20 px-6 sm:px-10 md:px-20 lg:px-32 flex flex-col md:flex-row items-center
-                  min-h-[500px] sm:min-h-[600px] md:min-h-[800px] bg-[#fcfcfb] overflow-hidden`}
+                  min-h-[500px] md:min-h-[800px] bg-[#fcfcfb] overflow-hidden`}
     >
-      {/* LEFT CONTENT */}
-      <div className="w-full md:w-1/2 z-30 mb-8 md:mb-0">
+      {/* LEFT CONTENT - Forced left alignment for all views */}
+      <div className="w-full md:w-1/2 z-30 mb-8 md:mb-0 text-left">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -147,6 +146,7 @@ export default function Clients() {
             Our Client
           </h1>
 
+          {/* Removed mx-auto to keep text pinned to the left on mobile */}
           <p className="text-[#060C0C] text-[14px] sm:text-[15px] md:text-[16px] leading-relaxed max-w-[460px]">
             Reliable recycling partnerships that transform waste into value
             while supporting sustainable industrial growth.

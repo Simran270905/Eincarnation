@@ -15,7 +15,8 @@ const NavbarMain = () => {
   ];
 
   return (
-    <nav className="w-full bg-[#F4F3EF] px-6 sm:px-10 md:px-16 lg:px-20 py-4 flex items-center justify-between relative z-[100]">
+    /* Changed to 'fixed top-0' to ensure it stays on top of the screen during scroll */
+    <nav className="fixed top-0 left-0 w-full bg-[#F4F3EF] px-6 sm:px-10 md:px-16 lg:px-20 py-4 flex items-center justify-between z-[100] shadow-sm">
 
       {/* Logo */}
       <NavLink
@@ -33,8 +34,8 @@ const NavbarMain = () => {
             to={link.path}
             className={({ isActive }) =>
               `transition-all hover:text-[#1A0185] relative py-1 ${
-                isActive 
-                  ? "text-[#1A0185] font-bold after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#1A0185]" 
+                isActive
+                  ? "text-[#1A0185] font-bold after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[2px] after:bg-[#1A0185]"
                   : "text-gray-600"
               }`
             }
@@ -44,7 +45,7 @@ const NavbarMain = () => {
         ))}
       </ul>
 
-      {/* Mobile Hamburger Button */}
+      {/* Mobile Hamburger */}
       <div className="md:hidden flex items-center">
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -55,11 +56,11 @@ const NavbarMain = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Dropdown */}
-      <div 
+      {/* Mobile Menu */}
+      <div
         className={`absolute top-full left-0 w-full bg-[#F4F3EF] shadow-xl border-t border-black/5 flex flex-col items-center py-6 md:hidden transition-all duration-300 ease-in-out origin-top ${
-          isOpen 
-            ? "opacity-100 scale-y-100 visible" 
+          isOpen
+            ? "opacity-100 scale-y-100 visible"
             : "opacity-0 scale-y-0 invisible"
         }`}
       >
@@ -70,8 +71,8 @@ const NavbarMain = () => {
             onClick={() => setIsOpen(false)}
             className={({ isActive }) =>
               `w-full text-center py-4 text-base font-semibold transition-colors ${
-                isActive 
-                  ? "bg-[#1A0185] text-white" 
+                isActive
+                  ? "bg-[#1A0185] text-white"
                   : "text-[#2D3E48] hover:bg-black/5"
               }`
             }
