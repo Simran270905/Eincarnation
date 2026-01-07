@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 export default function HeroSection() {
   return (
     <section
-      className="relative min-h-[250px] md:min-h-[350px] lg:min-h-[400px] w-full bg-cover bg-center overflow-hidden rounded-b-[30px] md:rounded-b-[50px] lg:rounded-b-[80px]"
+      className="relative min-h-[300px] md:min-h-[350px] lg:min-h-[400px] w-full bg-cover bg-center overflow-hidden rounded-b-[30px] md:rounded-b-[50px] lg:rounded-b-[80px]"
       style={{
         backgroundImage: `url(${hero})`,
       }}
@@ -16,7 +16,8 @@ export default function HeroSection() {
         <Navbar />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 mt-10 md:mt-20 lg:mt-24">
+      {/* 🔹 Added pt-24 for mobile to clear the fixed navbar */}
+      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 pt-24 md:pt-0 mt-10 md:mt-20 lg:mt-24 pb-10">
         <div className="inline-block mb-2 md:mb-4">
           <span className="text-[10px] md:text-xs tracking-[0.3em] uppercase text-white/70 font-bold">
             WHO WE ARE

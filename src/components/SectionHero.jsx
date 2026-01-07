@@ -4,7 +4,7 @@ import Navbar from "./Navbar";
 export default function SectionHero() {
   return (
     <section
-      className="relative min-h-[250px] md:min-h-[300px] lg:min-h-[350px] w-full bg-cover bg-center overflow-hidden rounded-b-[30px] md:rounded-b-[40px]"
+      className="relative min-h-[320px] md:min-h-[300px] lg:min-h-[350px] w-full bg-cover bg-center overflow-hidden rounded-b-[30px] md:rounded-b-[40px]"
       style={{
         backgroundImage: `url(${hero})`,
       }}
@@ -18,7 +18,8 @@ export default function SectionHero() {
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 px-6 sm:px-10 md:px-16 lg:px-24 mt-8 md:mt-12 lg:mt-16">
+      {/* 🔹 Added pt-24 for mobile to push text below fixed/sticky navbar */}
+      <div className="relative z-10 px-6 sm:px-10 md:px-16 lg:px-24 pt-24 md:pt-0 mt-8 md:mt-12 lg:mt-16 pb-10">
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-tight uppercase leading-tight">
           Our Services
         </h1>

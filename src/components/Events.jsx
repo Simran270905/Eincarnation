@@ -18,7 +18,7 @@ export default function Events() {
   ];
 
   return (
-    <section className="w-full min-h-screen py-16 px-4 md:px-12 bg-[#f4f2eb] font-sans">
+    <section className="w-full min-h-screen py-16 px-4 mt-10 md:px-12 bg-[#f4f2eb] font-sans">
 
       {/* Header Section */}
       <div className="mb-12 max-w-7xl mx-auto text-center">
