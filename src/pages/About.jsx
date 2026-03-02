@@ -1,6 +1,7 @@
 import React from "react";
-import { motion } from "framer-motion";
-
+import SEO from "../components/SEO";
+import { BreadcrumbSchema } from "../components/StructuredData";
+import ScrollSection from "../components/common/ScrollSection";
 import Hero from "../components/Hero";
 import AboutIntro from "../components/AboutIntro";
 import History from "../components/History";
@@ -8,31 +9,27 @@ import CoreTeam from "../components/CoreTeam";
 import Certificates from "../components/Certificates";
 import ContactForm  from "../components/ContactForm";
 import Footer from "../components/Footer";
-
-// Reusable scroll animation wrapper
-const ScrollSection = ({ children, delay = 0 }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }} // Reduced distance for "faster" look
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ 
-      duration: 0.4,           // Snappier duration
-      ease: [0.22, 1, 0.36, 1], // Smooth Quintic Ease-out
-      delay 
-    }}
-    viewport={{ 
-      once: true, 
-      amount: 0.15             // Triggers sooner as user scrolls
-    }}
-  >
-    {children}
-  </motion.div>
-);
 export default function About() {
   return (
-    <div className="w-full font-sans bg-[#f3f0e6] min-h-screen">
+    <>
+      <SEO 
+        title="About Us - E-Incarnation Recycling | Our Mission & Values"
+        description="Learn about E-Incarnation's journey in sustainable e-waste management. Meet our expert team, discover our certifications, and understand our commitment to environmental responsibility."
+        keywords="about e-incarnation, e-waste company history, recycling team, environmental certifications, sustainable practices, company values"
+        canonical="/about"
+      />
+      <BreadcrumbSchema items={[
+        { name: 'Home', path: '/' },
+        { name: 'About Us', path: '/about' }
+      ]} />
+      <div className="w-full font-sans bg-[#f3f0e6] min-h-screen">
+      <a href="#main-content" className="skip-link">Skip to main content</a>
+      
       <ScrollSection>
         <Hero />
       </ScrollSection>
+      
+      <main id="main-content">
 
       <ScrollSection delay={0.025}>
         <AboutIntro />
@@ -57,6 +54,8 @@ export default function About() {
       <ScrollSection delay={0.150}>
         <Footer />
       </ScrollSection>
+      </main>
     </div>
+    </>
   );
 }

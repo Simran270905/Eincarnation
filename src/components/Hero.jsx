@@ -1,34 +1,54 @@
+import { motion } from "framer-motion";
 import hero from "../assets/images/hero-bg.png";
-import Navbar from "./Navbar";
+import Navbar from "./common/Navbar";
+import { useAboutPage } from "../hooks/useAboutPage";
 
 export default function HeroSection() {
+  const { aboutData } = useAboutPage();
+  const heroImage = aboutData?.heroSection?.image || hero;
+
   return (
     <section
-      className="relative min-h-[300px] md:min-h-[350px] lg:min-h-[400px] w-full bg-cover bg-center overflow-hidden rounded-b-[30px] md:rounded-b-[50px] lg:rounded-b-[80px]"
+      className="relative h-[280px] md:h-[260px] lg:h-[300px] w-full bg-cover bg-center overflow-hidden rounded-b-[30px] md:rounded-b-[40px]"
       style={{
-        backgroundImage: `url(${hero})`,
+        backgroundImage: `url(${heroImage})`,
       }}
     >
       {/* Overlay for better text contrast */}
       <div className="absolute inset-0 bg-black/40 md:bg-black/50"></div>
 
       <div className="relative z-20">
-        <Navbar />
+        <Navbar variant="transparent" />
       </div>
 
-      {/* 🔹 Added pt-24 for mobile to clear the fixed navbar */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 pt-24 md:pt-0 mt-10 md:mt-20 lg:mt-24 pb-10">
-        <div className="inline-block mb-2 md:mb-4">
+      {/* Content positioned below navbar */}
+      <motion.div 
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 pt-28 md:pt-24 lg:pt-28 pb-8"
+      >
+        <motion.div 
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="inline-block mb-2 md:mb-4"
+        >
           <span className="text-[10px] md:text-xs tracking-[0.3em] uppercase text-white/70 font-bold">
             WHO WE ARE
           </span>
           <div className="h-[2px] w-10 bg-[#87BBD7] mt-1" />
-        </div>
+        </motion.div>
         
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-tight">
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.6 }}
+          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-tight"
+        >
           About Us
-        </h1>
-      </div>
+        </motion.h1>
+      </motion.div>
     </section>
   );
 }

@@ -1,32 +1,29 @@
 import React from "react";
-import { motion } from "framer-motion";
-
+import SEO from "../components/SEO";
+import { BreadcrumbSchema, ServiceSchema } from "../components/StructuredData";
+import ScrollSection from "../components/common/ScrollSection";
 import SectionHero from "../components/SectionHero";
 import ServicesSection from "../components/ServicesSection";
 import ContactForm from "../components/ContactForm";
 import Footer from "../components/Footer";
-
-// Reusable scroll animation wrapper
-const ScrollSection = ({ children, delay = 0 }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }} // Reduced distance for "faster" look
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ 
-      duration: 0.4,           // Snappier duration
-      ease: [0.22, 1, 0.36, 1], // Smooth Quintic Ease-out
-      delay 
-    }}
-    viewport={{ 
-      once: true, 
-      amount: 0.15             // Triggers sooner as user scrolls
-    }}
-  >
-    {children}
-  </motion.div>
-);
 export default function Services() {
   return (
-    <main className="w-full">
+    <>
+      <SEO 
+        title="Our Services - E-Waste Recycling & IT Asset Disposal | E-Incarnation"
+        description="Comprehensive e-waste management services including EPR compliance, ITAD, secure data destruction, battery recycling, and corporate waste solutions. Certified and environmentally responsible."
+        keywords="e-waste services, EPR compliance India, ITAD services, data destruction, battery recycling, corporate waste management, electronics disposal"
+        canonical="/services"
+      />
+      <BreadcrumbSchema items={[
+        { name: 'Home', path: '/' },
+        { name: 'Services', path: '/services' }
+      ]} />
+      <ServiceSchema service={{
+        title: 'E-Waste Recycling Services',
+        description: 'Professional e-waste recycling, EPR compliance, and IT asset disposition services'
+      }} />
+      <main className="w-full">
       <ScrollSection>
         <SectionHero />
       </ScrollSection>
@@ -43,5 +40,6 @@ export default function Services() {
         <Footer />
       </ScrollSection>
     </main>
+    </>
   );
 }

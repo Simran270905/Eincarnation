@@ -1,36 +1,37 @@
 import React, { useState, useEffect, useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-
-// Asset Imports (Ensure paths match your project structure)
-import collection from "../assets/images/collection.png";
-import recycling from "../assets/images/recycle.png";
-import danger from "../assets/images/danger.png";
-import gears from "../assets/images/gears.png";
-import encrypted from "../assets/images/encrypted.png";
+import { useServices } from "../hooks/useServices";
+import { useServicesPage } from "../hooks/useServicesPage";
 
 const ServicesSection = () => {
-  // 1. DATA FOR TOP GRID
-  const mainServices = [
-    { title: "Collection", btn: "Contact Us", icon: collection },
-    { title: "Data Security", btn: "Contact Us", icon: encrypted },
-    { title: "Recycle", btn: "Contact Us", icon: recycling },
-    { title: "Hazardous Waste", btn: "Contact Us", icon: danger },
-    { title: "Metal Recovery", btn: "Contact Us", icon: gears },
-    { title: "EPR", btn: "View More", icon: recycling },
+  // DATA - Fetch from backend
+  const { servicesPageData, loading: pageLoading } = useServicesPage();
+  
+  // Services sections from Services Page (not Home page)
+  const serviceSections = servicesPageData?.sections && servicesPageData.sections.length > 0
+    ? [...servicesPageData.sections].sort((a, b) => (a.order || 0) - (b.order || 0))
+    : [];
+  
+  // Fallback data if backend is empty
+  const fallbackProcessSteps = [
+    { title: "Collection and Pickup", description: "Scheduled e-waste collection from corporates, institutions, and households.", order: 0 },
+    { title: "Secure Transportation", description: "Safe transport to authorized facilities as per CPCB norms.", order: 1 },
+    { title: "Inspection & Segregation", description: "Material is weighed, inspected, and categorized for recycling.", order: 2 },
+    { title: "Refurbishment & Reuse", description: "Repairable items are refurbished to extend product life.", order: 3 },
+    { title: "Dismantling", description: "Non-repairable items are dismantled to separate components.", order: 4 },
+    { title: "Material Recovery", description: "Recovery of metals, plastics, and valuable resources.", order: 5 },
+    { title: "Hazardous Waste Management", description: "Safe handling and disposal of hazardous e-waste materials.", order: 6 },
+    { title: "Responsible Recycling", description: "Environmentally responsible recycling as per regulations.", order: 7 },
+    { title: "Documentation & Certification", description: "Compliance documents and recycling certificates provided.", order: 8 },
   ];
 
-  // 2. DATA FOR CIRCULAR SLIDER
-  const processSteps = [
-    { title: "Collection and Pickup", desc: "Scheduled e-waste collection from corporates, institutions, and households." },
-    { title: "Secure Transportation", desc: "Safe transport to authorized facilities as per CPCB norms." },
-    { title: "Inspection & Segregation", desc: "Material is weighed, inspected, and categorized for recycling." },
-    { title: "Refurbishment & Reuse", desc: "Repairable items are refurbished to extend product life." },
-    { title: "Dismantling", desc: "Non-repairable items are dismantled to separate components." },
-    { title: "Material Recovery", desc: "Recovery of metals, plastics, and valuable resources." },
-    { title: "Hazardous Waste Management", desc: "Safe handling and disposal of hazardous e-waste materials." },
-    { title: "Responsible Recycling", desc: "Environmentally responsible recycling as per regulations." },
-    { title: "Documentation & Certification", desc: "Compliance documents and recycling certificates provided." },
-  ];
+  // Use backend data or fallback
+  const processSteps = servicesPageData?.recyclingProcess?.steps && servicesPageData.recyclingProcess.steps.length > 0
+    ? [...servicesPageData.recyclingProcess.steps].sort((a, b) => (a.order || 0) - (b.order || 0))
+    : fallbackProcessSteps;
+  
+  const processTitle = servicesPageData?.recyclingProcess?.title || "Our Recycling Process";
+  const processDescription = servicesPageData?.recyclingProcess?.description || "Our process ensures safe, compliant e-waste handling with maximum resource recovery.";
 
   // --- INFINITE LOOP LOGIC ---
   const [cardsPerView, setCardsPerView] = useState(4);
@@ -102,38 +103,76 @@ const ServicesSection = () => {
       <div className="px-6 md:px-16 py-12 md:py-20">
         <div className="mx-auto max-w-7xl">
           
-          {/* ================= SECTION 1: MAIN SERVICES GRID ================= */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-24">
-            {mainServices.map((service, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-[2.2rem] p-8 shadow-sm flex flex-col transition-transform hover:-translate-y-1"
-              >
-                <div className="bg-black w-14 h-14 rounded-full mb-5 flex items-center justify-center p-3">
-                  <img 
-                    src={service.icon} 
-                    alt={service.title} 
-                    className="w-full h-full object-contain invert" 
-                  />
+          {/* ================= SECTION 1: SERVICES SECTIONS FROM ADMIN ================= */}
+          {pageLoading ? (
+            <div className="text-center py-12 mb-24">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-gray-300 border-t-[#1A0185]"></div>
+            </div>
+          ) : serviceSections.length > 0 ? (
+            <div className="space-y-16 mb-24">
+              {serviceSections.map((section, index) => (
+                <div 
+                  key={section._id || index}
+                  className={`flex flex-col ${
+                    index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'
+                  } gap-8 lg:gap-12 items-center bg-white rounded-3xl p-8 lg:p-12 shadow-lg hover:shadow-xl transition-shadow`}
+                >
+                  {/* Image Section */}
+                  {section.image && (
+                    <div className="w-full lg:w-1/2">
+                      {section.image && (
+                        <div className="aspect-video rounded-2xl overflow-hidden bg-gray-100">
+                          <img 
+                            src={section.image} 
+                            alt={section.title}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
+                  
+                  {/* Content Section */}
+                  <div className={`w-full ${section.image ? 'lg:w-1/2' : 'lg:w-full'} space-y-4`}>
+                    <h2 className="text-3xl lg:text-4xl font-bold text-[#1A0185] leading-tight">
+                      {section.title}
+                    </h2>
+                    <p className="text-gray-700 text-base lg:text-lg leading-relaxed">
+                      {section.description}
+                    </p>
+                    
+                    {/* Features List */}
+                    {section.features && section.features.length > 0 && (
+                      <ul className="space-y-2 pt-4">
+                        {section.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-start gap-3">
+                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-[#87BBD7] flex items-center justify-center mt-0.5">
+                              <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
+                              </svg>
+                            </span>
+                            <span className="text-gray-700 text-sm lg:text-base">{feature}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
                 </div>
-                <h3 className="text-xl font-bold text-[#1A0185] mb-2">{service.title}</h3>
-                <p className="text-[#060C0C] text-sm leading-relaxed mb-6">
-                  Safe disposal of electronics with certified recycling processes.
-                </p>
-                <button className="mt-auto w-fit px-6 py-2 rounded-full text-sm font-semibold bg-[#87BBD7] hover:bg-[#76a8c1] transition">
-                  {service.btn}
-                </button>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12 mb-24">
+              <p className="text-gray-500">No services available. Please add services from the Admin Panel.</p>
+            </div>
+          )}
 
           {/* ================= SECTION 2: CIRCULAR PROCESS SLIDER ================= */}
           <div className="mb-12 text-center md:text-left">
             <h2 className="mb-4 text-3xl md:text-4xl font-bold text-[#1a0b91]">
-              Our Recycling Process
+              {processTitle}
             </h2>
             <p className="max-w-3xl text-sm font-medium text-gray-800 leading-relaxed">
-              Our process ensures safe, compliant e-waste handling with maximum resource recovery.
+              {processDescription}
             </p>
           </div>
 
@@ -170,8 +209,8 @@ const ServicesSection = () => {
                       <h3 className="mb-3 text-lg font-bold text-[#1a0b91] leading-tight">
                         {item.title}
                       </h3>
-                      <p className="text-[13px] leading-relaxed text-gray-600">
-                        {item.desc}
+                      <p className="text-sm text-gray-700 leading-relaxed">
+                        {item.description || item.desc}
                       </p>
                     </div>
                   </div>

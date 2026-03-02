@@ -1,0 +1,24 @@
+# E-Incarnation Recycling - robots.txt
+# Allow search engines to crawl all public pages
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /adminlogin
+
+# Sitemap location
+Sitemap: https://eincarnation.in/sitemap.xml
+
+# Crawl-delay for better server performance
+Crawl-delay: 1
+
+# Additional search engine specific rules
+User-agent: Googlebot
+Allow: /
+Disallow: /admin
+Disallow: /adminlogin
+
+User-agent: Bingbot
+Allow: /
+Disallow: /admin
+Disallow: /adminlogin

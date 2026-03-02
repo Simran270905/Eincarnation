@@ -1,62 +1,61 @@
 import React from "react";
-import { motion } from "framer-motion";
-
-import NavbarMain from "../components/NavbarMain";
+import SEO from "../components/SEO";
+import { OrganizationSchema } from "../components/StructuredData";
+import Navbar from "../components/common/Navbar";
+import ScrollSection from "../components/common/ScrollSection";
 import HeroMain from "../components/HeroMain";
 import AboutServicesSection from "../components/AboutServiceSection";
-import Client from "../components/Client";
+import ClientHybrid from "../components/ClientHybrid";
 import Review from "../components/Review";
 import ContactForm from "../components/ContactForm";
 import Footer from "../components/Footer";
 
-// Optimized scroll animation wrapper
-const ScrollSection = ({ children, delay = 0 }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }} // Reduced distance for "faster" look
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ 
-      duration: 0.4,           // Snappier duration
-      ease: [0.22, 1, 0.36, 1], // Smooth Quintic Ease-out
-      delay 
-    }}
-    viewport={{ 
-      once: true, 
-      amount: 0.15             // Triggers sooner as user scrolls
-    }}
-  >
-    {children}
-  </motion.div>
-);
-
 export default function Home() {
   return (
-    <div className="w-full font-sans bg-[#f3f0e6] min-h-screen">
-      <NavbarMain />
+    <>
+      <SEO 
+        title="E-Incarnation Recycling - Leading E-Waste Management & EPR Solutions in India"
+        description="Transform your e-waste into environmental action. Professional EPR compliance, IT asset disposition, and certified electronics recycling services across India. Sustainable waste management solutions."
+        keywords="e-waste recycling India, EPR compliance, IT asset disposition, ITAD services, electronics recycling, e-waste management, sustainable recycling, electronic waste disposal, IT equipment recycling"
+        canonical="/"
+      />
+      <OrganizationSchema />
+      <div className="w-full font-sans bg-[#f3f0e6] min-h-screen">
+        <a href="#main-content" className="skip-link">Skip to main content</a>
+      <Navbar variant="main" />
+      
+      <main id="main-content" className="space-y-0">
+        {/* Hero Section - No top spacing needed */}
+        <ScrollSection>
+          <HeroMain />
+        </ScrollSection>
 
-      <ScrollSection>
-        <HeroMain />
-      </ScrollSection>
+        {/* About & Services - Seamless connection to hero */}
+        <ScrollSection delay={0.05}>
+          <AboutServicesSection />
+        </ScrollSection>
 
-      {/* Staggered delays create a professional sequence */}
-      <ScrollSection delay={0.05}>
-        <AboutServicesSection />
-      </ScrollSection>
+        {/* Client Logos - Consistent spacing */}
+        <ScrollSection delay={0.1}>
+          <ClientHybrid />
+        </ScrollSection>
 
-      <ScrollSection delay={0.1}>
-        <Client />
-      </ScrollSection>
+        {/* Testimonials - Balanced spacing */}
+        <ScrollSection delay={0.1}>
+          <Review />
+        </ScrollSection>
 
-      <ScrollSection delay={0.1}>
-        <Review />
-      </ScrollSection>
+        {/* Contact Form - Increased top spacing for separation */}
+        <ScrollSection delay={0.1}>
+          <ContactForm />
+        </ScrollSection>
 
-      <ScrollSection delay={0.1}>
-        <ContactForm />
-      </ScrollSection>
-
-      <ScrollSection>
-        <Footer />
-      </ScrollSection>
+        {/* Footer - No extra spacing */}
+        <ScrollSection>
+          <Footer />
+        </ScrollSection>
+      </main>
     </div>
+    </>
   );
 }
